@@ -7,7 +7,7 @@
 	"description": "",
 	"main": "index.js",
 	"scripts": {
-    "start": "webpack-dev-server --mode development --port 3015",
+    "start": "webpack-dev-server --mode development --port 3017",
     "build": "webpack --mode development",
     "deploy:github": "node deploy-to-github.js"
 },
