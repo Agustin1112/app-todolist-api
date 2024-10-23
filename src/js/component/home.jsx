@@ -99,22 +99,33 @@ const TodoApp = () => {
 
   const deleteTaskFromServer = async (taskId) => {
     try {
+      console.log(`Intentando eliminar tarea con ID: ${taskId}`); // Asegúrate de que este ID sea un número entero
       const response = await fetch(`https://playground.4geeks.com/todo/todos/${taskId}`, {
         method: "DELETE",
         headers: { "Content-Type": "application/json" },
       });
   
       if (!response.ok) {
-        const errorMessage = await response.text(); // Capturar mensaje de error del servidor
+        const errorMessage = await response.text();
         console.error("Error al eliminar tarea:", response.status, errorMessage);
       } else {
         setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
         console.log(`Tarea ${taskId} eliminada con éxito`);
       }
     } catch (error) {
-      console.error("Error eliminando la tarea:", error.message);
+      console.error("Error eliminando la tarea:", error.message); // Detalle del error
     }
   };
+  
+  // En la lista de tareas
+  <button
+    onClick={async () => {
+      await deleteTaskFromServer(task.id);  // Asegúrate de pasar task.id, que es un número
+    }}
+    style={styles.deleteButton}
+  >
+    🗑️
+  </button>
   
 
   return (
